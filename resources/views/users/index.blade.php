@@ -26,27 +26,12 @@
                     <div class="card">
                         <div class="card-body p-0">
 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            {{ $dataTable->table() }}
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer clearfix">
-                            {{ $users->links() }}
+{{--                            {{ $users->links() }}--}}
                         </div>
                     </div>
 
@@ -57,3 +42,7 @@
     </div>
     <!-- /.content -->
 @endsection
+
+@push('scripts')
+        {{ $dataTable->scripts() }}
+@endpush
