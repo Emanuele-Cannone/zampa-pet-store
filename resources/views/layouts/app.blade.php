@@ -94,11 +94,12 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
 @vite('resources/js/app.js')
+@stack('scripts')
+
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 
-@yield('scripts')
+
 </body>
 </html>
