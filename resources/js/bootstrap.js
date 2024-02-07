@@ -1,6 +1,7 @@
 import Popper from '@popperjs/core/dist/umd/popper.js';
 import jQuery from 'jquery';
 import axios from 'axios';
+import swal from 'sweetalert2';
 import 'bootstrap';
 
 /**
@@ -10,6 +11,7 @@ import 'bootstrap';
  */
 
 window.Popper = Popper;
+window.Swal = swal;
 window.$ = window.jQuery = jQuery;
 
 /**
