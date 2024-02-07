@@ -4,9 +4,9 @@
     <div class="col-md-12 mt-3">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Clienti registrati</h3>
+                <h3 class="card-title">Animali</h3>
                 <div class="float-right">
-                    <a href="{{ route('customers.create') }}" class="btn btn-primary">
+                    <a href="{{ route('animals.create') }}" class="btn btn-primary">
                         <i class="fa fa-plus" aria-hidden="true"></i> Crea nuovo
                     </a>
                 </div>
@@ -17,35 +17,43 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Telefono</th>
-                        <th style="width: 40px">Email</th>
-                        <td>Azioni</td>
+                        <th>Specie</th>
+                        <th style="width: 40px">Razza</th>
+                        <th>Sterilizzato</th>
+                        <th>Proprietario</th>
+                        <th>Azioni</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($customers as $customer)
+                    @forelse($animals as $animal)
                         <tr>
                             <td>
-                                {{$customer->name}}
+                                {{$animal->name}}
                             </td>
                             <td>
-                                {{$customer->phone_number}}
+                                {{$animal->species}}
                             </td>
                             <td>
-                                {{$customer->email}}
+                                {{$animal->breed}}
                             </td>
                             <td>
-                                <a href="{{ route('customers.edit',$customer) }}" class="text-primary mr-3">
+                                {{$animal->is_sterilized_label}}
+                            </td>
+                            <td>
+                                {{ isset($animal->customer) ? $animal->customer->name :'' }}
+                            </td>
+                            <td>
+                                <a href="{{ route('animals.edit',$animal) }}" class="text-primary mr-3">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{ route('customers.destroy',$customer) }}" class="text-danger delete-customer">
+                                <a href="{{ route('animals.destroy',$animal) }}" class="text-danger delete-animal">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3">Niente da mostrare</td>
+                            <td colspan="6">Niente da mostrare</td>
                         </tr>
                     @endforelse
                     </tbody>
@@ -62,7 +70,7 @@
 
 @section('scripts')
     <script type="module">
-        $('.delete-customer').on('click',function(e){
+        $('.delete-animal').on('click',function(e){
             e.preventDefault();
             let href = $(this).attr('href');
             let token = $('meta[name="csrf-token"]').attr('content');

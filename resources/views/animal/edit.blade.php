@@ -4,17 +4,17 @@
     <div class="col-md-12 mt-3">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Modifica cliente - <b class="text-uppercase">{{$customer->name}}</b></h3>
+                <h3 class="card-title">Modifica animale - <b class="text-uppercase">{{$animal->name}}</b></h3>
                 <div class="float-right">
-                    <a href="{{ route('customers.index') }}" class="btn btn-primary">
+                    <a href="{{ route('animals.index') }}" class="btn btn-primary">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i> Indietro
                     </a>
                 </div>
             </div>
 
-            <form method="POST" action="{{ route('customers.update',$customer) }}">
+            <form method="POST" action="{{ route('animals.update',$animal->id) }}">
                 @method('PUT')
-                @include('customer.partials.form')
+                @include('animal.partials.form')
             </form>
         </div>
     </div>

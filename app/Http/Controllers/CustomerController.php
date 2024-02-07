@@ -23,13 +23,13 @@ class CustomerController extends Controller
     public function store(Request $request){
         $data = $request->all();
         $customer = Customer::create($data);
-        return redirect()->route('customer.index');
+        return redirect()->route('customers.index');
     }
 
     public function update(Request $request, Customer $customer){
         $data = $request->all();
         $customer->update($data);
-        return redirect()->route('customer.index');
+        return redirect()->route('customers.index');
     }
 
     public function destroy(Customer $customer){
