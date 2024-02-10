@@ -2,9 +2,9 @@
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info">
-            <a href="{{ route('profile.show') }}" class="d-block">{{ Auth::user()->name }}</a>
-        </div>
+{{--        <div class="info">--}}
+{{--            <a href="{{ route('profile.show') }}" class="d-block">{{ Auth::user()->name }}</a>--}}
+{{--        </div>--}}
     </div>
 
     <!-- Sidebar Menu -->
@@ -34,6 +34,14 @@
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         Clienti
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('vendors.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-file-invoice"></i>
+                    <p>
+                        {{ __('vendor.vendors') }}
                     </p>
                 </a>
             </li>

@@ -34,7 +34,7 @@
                     {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
-                    <a href="{{ route('profile.show') }}" class="dropdown-item">
+                    <a href="{{ route('profile.show', Auth::id()) }}" class="dropdown-item">
                         <i class="mr-2 fas fa-file"></i>
                         {{ __('My profile') }}
                     </a>
@@ -67,9 +67,11 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        @yield('content')
-    </div>
+    <section class="content-wrapper">
+        <div class="content">
+            @yield('content')
+        </div>
+    </section>
     <!-- /.content-wrapper -->
 
     <!-- Control Sidebar -->
