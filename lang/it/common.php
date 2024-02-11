@@ -8,6 +8,7 @@ return [
     'actions' => 'Azioni',
     'address' => 'Indirizzo',
     'email' => 'Email',
+    'name' => 'Nome',
     'country' => 'Stato',
     'fiscal_code' => 'Codice Fiscale',
     'p_iva' => 'P. Iva',
@@ -18,5 +19,7 @@ return [
     'telephone' => 'Tel',
     'other_contact' => 'Altri contatti',
     'create' => 'Crea',
-    'edit' => 'Modifica'
+    'edit' => 'Modifica',
+    'sure' => 'L\'azione è irreversibile',
+    'delete_btn' => 'Elimina',
 ];

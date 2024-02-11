@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('vendor.vendors') }}</h1>
+                    <h1 class="m-0">{{ __('cluster.clusters') }}</h1>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 @method('DELETE')
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">{{ __('vendor.delete_title') }}</h4>
+                        <h4 class="modal-title">{{ __('cluster.delete_title') }}</h4>
                     </div>
                     <div class="modal-body">
                         <p>{{ __('common.sure') }}</p>
@@ -54,7 +54,7 @@
     <script type="module">
 
         $(document).on("click", ".open-delete-modal", function () {
-            $("#deleteForm").attr('action', "{{ route('vendors.destroy', '') }}" + '/' + $(this).data('vendor'));
+            $("#deleteForm").attr('action', "{{ route('clusters.destroy', '') }}" + '/' + $(this).data('cluster'));
             $('#modal-delete').modal('show');
         });
 
