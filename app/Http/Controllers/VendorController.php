@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\VendorsDataTable;
+use App\Exceptions\VendorException;
 use App\Http\Requests\VendorStoreRequest;
+use App\Http\Requests\VendorUpdateRequest;
 use App\Models\Vendor;
 use App\Services\VendorService;
 use Illuminate\Http\RedirectResponse;
@@ -24,7 +26,7 @@ class VendorController extends Controller
      * @param VendorsDataTable $dataTable
      * @return mixed
      */
-    public function index(VendorsDataTable $dataTable)
+    public function index(VendorsDataTable $dataTable): mixed
     {
         return $dataTable->render('vendor.index');
     }
@@ -42,12 +44,11 @@ class VendorController extends Controller
     /**
      * @param VendorStoreRequest $request
      * @return RedirectResponse
+     * @throws VendorException
      */
     public function store(VendorStoreRequest $request): RedirectResponse
     {
         $this->service->create($request);
-
-        toastr()->error('Oops! Something went wrong!');
         return redirect()->route('vendor.index');
     }
 
@@ -71,17 +72,27 @@ class VendorController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param Vendor $vendor
+     * @param VendorUpdateRequest $request
+     * @return RedirectResponse
+     * @throws VendorException
      */
-    public function update(Request $request, string $id)
+    public function update(Vendor $vendor, VendorUpdateRequest $request): RedirectResponse
     {
-        //
+        $this->service->update($vendor, $request);
+        return redirect()->route('vendors.index');
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Vendor $vendor
+     * @return RedirectResponse
      */
-    public function destroy(string $id)
+    public function destroy(Vendor $vendor): RedirectResponse
     {
-        //
+        $vendor->delete();
+        toastr()->success(__('vendor.deleted'));
+        return redirect()->route('vendors.index');
+
     }
 }

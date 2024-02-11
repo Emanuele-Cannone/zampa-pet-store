@@ -5,18 +5,17 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('vendor.edit_vendor') .' - '.$vendor->company_name }}</h1>
+                    <h1 class="m-0">{{ __('cluster.new_cluster') }}</h1>
                 </div>
             </div>
         </div>
     </div>
-    <form method="post" action="{{ route('vendors.update', $vendor) }}">
+    <form method="post" action="{{ route('clusters.store') }}">
         @csrf
-        @method('PUT')
-        @include('vendor.partials.form')
+        @include('cluster.partials.form')
 
         <div class="d-flex justify-content-end py-2">
-            <button type="submit" class="btn btn-warning">{{ __('common.edit') }}</button>
+            <button type="submit" class="btn btn-success">{{ __('common.create') }}</button>
         </div>
     </form>
     <!-- /.content -->

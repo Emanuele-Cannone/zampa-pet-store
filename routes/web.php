@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\HomeController;
@@ -47,5 +48,8 @@ Route::middleware('auth')->group(function () {
 
     // Vendor
     Route::resource('vendors', VendorController::class);
+
+    // Cluster
+    Route::resource('clusters', ClusterController::class);
 
 });
