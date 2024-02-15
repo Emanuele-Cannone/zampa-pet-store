@@ -52,4 +52,7 @@ Route::middleware('auth')->group(function () {
     // Cluster
     Route::resource('clusters', ClusterController::class);
 
+    //Article
+    Route::resource('articles', \App\Http\Controllers\ArticleController::class);
+
 });
