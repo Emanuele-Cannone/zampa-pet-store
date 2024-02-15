@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Cluster;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Vite;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -49,6 +50,7 @@ class ClustersDataTable extends DataTable
         return $this->builder()
             ->setTableId('clusters-table')
             ->columns($this->getColumns())
+            ->language(Vite::asset('resources/datatable/lang/it.json'))
             ->minifiedAjax()
             ->orderBy(1)
             ->buttons([

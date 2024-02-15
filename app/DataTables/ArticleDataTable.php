@@ -2,25 +2,19 @@
 
 namespace App\DataTables;
 
-use App\Models\Vendor;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Vite;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class VendorsDataTable extends DataTable
+class ArticleDataTable extends DataTable
 {
-
     protected string|array $exportColumns = [
-        'company_name',
-        'address',
-        'city',
-        'postal_code',
+        'description',
     ];
 
     /**
@@ -32,8 +26,14 @@ class VendorsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($row) {
-                return '<a href="vendors/'.$row->id.'/edit" class="btn btn-warning">Edit</a>
-                        <button data-vendor="'.$row->id.'" class="btn btn-danger open-delete-modal">Delete</button>';
+                return '<a href="articles/'.$row->id.'/edit" class="btn btn-warning">Edit</a>
+                        <button data-article="'.$row->id.'" class="btn btn-danger open-delete-modal">Delete</button>';
+            })
+            ->addColumn('is_active_label', function($row) {
+                return $row->is_active_label;
+            })
+            ->addColumn('in_order_label', function($row) {
+                return $row->in_order_label;
             })
             ->setRowId('id');
     }
@@ -41,7 +41,7 @@ class VendorsDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Vendor $model): QueryBuilder
+    public function query(Article $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -52,10 +52,10 @@ class VendorsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vendors-table')
+            ->setTableId('articles-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
             ->language(Vite::asset('resources/datatable/lang/it.json'))
+            ->minifiedAjax()
             ->orderBy(1)
             ->buttons([
                 Button::make('add'),
@@ -74,10 +74,11 @@ class VendorsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('company_name')->title(__('vendor.company_name')),
-            Column::make('address')->title(__('common.address')),
-            Column::make('city')->title(__('common.city')),
-            Column::make('email')->title(__('common.email')),
+            Column::make('ean_code')->title(__('article.ean_code')),
+            Column::make('product_code')->title(__('article.product_code')),
+            Column::make('description')->title(__('article.description')),
+            Column::make('is_active_label')->title(__('article.is_active')),
+            Column::make('in_order_label')->title(__('article.in_order')),
             Column::make('action')->title(__('common.actions')),
         ];
     }
@@ -87,6 +88,6 @@ class VendorsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Vendors_' . date('YmdHis');
+        return 'Articles_' . date('YmdHis');
     }
 }
