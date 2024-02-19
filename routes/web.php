@@ -5,6 +5,7 @@ use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\CustomerController;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LockScreenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -31,7 +32,11 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->group(function () {
+// Lockscreen
+Route::resource('locked', LockScreenController::class);
+
+Route::middleware(['auth', 'lock'])->group(function () {
+
     Route::view('about', 'about')->name('about');
 
     // Users
