@@ -20,6 +20,7 @@ return [
     'other_contact' => 'Altri contatti',
     'create' => 'Crea',
     'edit' => 'Modifica',
+    'delete' => 'Elimina',
     'sure' => 'L\'azione è irreversibile',
     'delete_btn' => 'Elimina',
 ];

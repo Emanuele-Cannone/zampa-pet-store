@@ -13,10 +13,6 @@
     <form method="post" action="{{ route('vendors.store') }}">
         @csrf
         @include('vendor.partials.form')
-
-        <div class="d-flex justify-content-end py-2">
-            <button type="submit" class="btn btn-success">{{ __('common.create') }}</button>
-        </div>
     </form>
     <!-- /.content -->
 @endsection

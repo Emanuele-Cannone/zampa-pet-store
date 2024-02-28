@@ -11,13 +11,9 @@
         </div>
     </div>
     <form method="post" action="{{ route('vendors.update', $vendor) }}">
-        @csrf
         @method('PUT')
+        @csrf
         @include('vendor.partials.form')
-
-        <div class="d-flex justify-content-end py-2">
-            <button type="submit" class="btn btn-warning">{{ __('common.edit') }}</button>
-        </div>
     </form>
     <!-- /.content -->
 @endsection
