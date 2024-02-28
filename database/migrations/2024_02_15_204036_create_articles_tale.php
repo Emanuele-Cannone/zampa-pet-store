@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
-            $table->string('ean_code');
-            $table->string('product_code');
+            $table->string('ean_code')->unique();
+            $table->string('product_code')->unique();
             $table->string('description');
             $table->boolean('is_active')->default(true);
             $table->boolean('in_order')->default(false);
+            $table->timestamps();
+
         });
     }
 
