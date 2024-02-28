@@ -8,6 +8,8 @@ use App\Http\Requests\VendorStoreRequest;
 use App\Http\Requests\VendorUpdateRequest;
 use App\Models\Vendor;
 use App\Services\VendorService;
+use http\Env\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,12 +25,11 @@ class VendorController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @param VendorsDataTable $dataTable
-     * @return mixed
+     * @return View
      */
-    public function index(VendorsDataTable $dataTable): mixed
+    public function index(): View
     {
-        return $dataTable->render('vendor.index');
+        return view('vendor.index', ['vendors' => Vendor::paginate(10)]);
     }
 
     /**
@@ -49,7 +50,7 @@ class VendorController extends Controller
     public function store(VendorStoreRequest $request): RedirectResponse
     {
         $this->service->create($request);
-        return redirect()->route('vendor.index');
+        return redirect()->route('vendors.index');
     }
 
     /**
@@ -86,13 +87,12 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param Vendor $vendor
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function destroy(Vendor $vendor): RedirectResponse
+    public function destroy(Vendor $vendor): JsonResponse
     {
         $vendor->delete();
-        toastr()->success(__('vendor.deleted'));
-        return redirect()->route('vendors.index');
+        return response()->json('ok',200);
 
     }
 }
